@@ -1,0 +1,105 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#map {
+  height: 100%;
+  z-index: 0;
+}
+
+.sidebar {
+  z-index: 1;
+  background-color: rgba(45, 46, 60, 0.75);
+  width: 270px;
+  height: 100%;
+  position: absolute;
+  border-right: 4px solid black;
+  border-left: 4px solid black;
+  border-bottom: 4px solid black;
+}
+
+h1 {
+  text-align: center;
+  background-color: #f06060;
+  margin: 0px;
+  padding: 10px;
+  font-family: 'Cardo', serif;
+  font-weight: bold;
+  color: black;
+}
+
+header {
+  border: 4px solid black;
+}
+
+li {
+  color: white;
+  font-family: 'Play', sans-serif;
+  margin-top: 5px;
+  font-size: 18px
+}
+
+ul {
+  list-style-type: none;
+  margin: 0px;
+  padding-left: 10px;
+}
+
+input {
+  margin: 10px;
+}
+
+h3 {
+  color: white;
+  font-family: 'Play', sans-serif;
+  margin-left: 10px;
+  font-size: 12px
+}
+
+/*hiding the hamburger button to pop out the sidebar when screen is not small */
+#menu {
+  display: none;
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 650px) {
+  .sidebar {
+    /* This transform moves the drawer off canvas when the screen is smaller than max width */
+    -webkit-transform: translate(-300px, 0);
+    transform: translate(-300px, 0);
+    /*animate the drawer*/
+    transition: transform 0.3s ease;
+  }
+
+  /*put the sidebar back to normal position*/
+  .sidebar.open {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+
+  /*#menu and #menu svg throw the hamburger button to pop out the menu in an absolute position with chosen style*/
+  #menu {
+    z-index: 2;
+    display: inline-block;
+    position: absolute;
+    margin: 10px;
+    right: 0;
+  }
+  #menu svg {
+    width: 32px;
+    fill: black;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+}
+
+/*making font size smaller as screen gets smaller*/
+@media screen and (max-width: 450px) {
+  h1 {
+    font-size: 14px;
+  }
+}
