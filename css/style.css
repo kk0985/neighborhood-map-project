@@ -11,7 +11,7 @@ html, body {
 
 .sidebar {
   z-index: 1;
-  background-color: rgba(45, 46, 60, 0.75);
+  background-color: rgba(216,216,216,0.8);
   width: 270px;
   height: 100%;
   position: absolute;
@@ -35,7 +35,14 @@ header {
 }
 
 li {
-  color: white;
+  color: red;
+  font-family: 'Play', sans-serif;
+  margin-top: 5px;
+  font-size: 18px
+}
+
+span {
+  color: blue;
   font-family: 'Play', sans-serif;
   margin-top: 5px;
   font-size: 18px
@@ -52,7 +59,7 @@ input {
 }
 
 h3 {
-  color: white;
+  color: black;
   font-family: 'Play', sans-serif;
   margin-left: 10px;
   font-size: 12px

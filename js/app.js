@@ -1,45 +1,45 @@
-//the landmarks object contains the information for all of my favorite restaurants that the
+//the landmark object contains the information for all of my favorite landmarks in Atlanta that the
 //model can make observable and the controller and associated functions can manipulate
 var landmarks = [
   {
-	name : 'Pho Dai Loi',
-	lat : 33.865206,
-	lon : -84.305052,
+	name : 'High Museum of Art',
+	lat : 33.7905,
+	lon : -84.3852,
 	order :  1,
-	cuisine : 'Vietnamese',
-	//the status attribute dictates whether the restaurant is visible after sorting
+	highlight : 'Classic and Contemporary Art',
 	status : true
   },
   {
-	name : 'Taqueria Del Sol',
-	lat : 33.787378,
-	lon : -84.412928,
+	name : 'World of Coca Cola',
+	lat : 33.76329,
+	lon : -84.39279,
 	order :  2,
-	cuisine : 'Tex Mex',
+	highlight : 'All things Coca Cola',
+	//the status attribute dictates whether the landmark is visible after sorting
 	status : true
   },
   {
-	name : 'TWO Urban Licks',
-	lat : 33.768498,
-	lon : -84.361257,
+	name : 'Centennial Olympic Park',
+	lat : 33.7600,
+	lon : -84.3932,
 	order :  3,
-	cuisine : 'Rotisserie',
+	highlight : 'Olympic Games 1996',
 	status : true
   },
   {
-	name : 'King of Pops',
-	lat : 33.763779,
-	lon : -84.358858,
+	name : 'Zoo Atlanta',
+	lat : 33.7325,
+	lon : -84.3679,
 	order :  4,
-	cuisine : 'Popsicles',
+	highlight : 'Finest collection of wildlife!',
 	status : true
   },
   {
-	name : 'The Greater Good BBQ',
-	lat : 33.876289,
-	lon : -84.379854,
+	name : 'Stone Mountain',
+	lat : 33.8059,
+	lon : -84.1454,
 	order :  5,
-	cuisine : 'BBQ',
+	highlight : 'Remembering where we came from.',
 	status : true
   },
 ];
@@ -53,7 +53,7 @@ var markers = [];
 function initMap() {
 	try {
 		map = new google.maps.Map(document.getElementById('map'), {
-		  center: {lat: 33.755, lng: -84.390},
+		  center: {lat: 33.7714, lng: -84.2978},
 		  zoom: 12,
 		  disableDefaultUI: true,
 		  maxZoom : 18
@@ -78,34 +78,34 @@ function setMapOnAll(map) {
 //the setMarkers function creates the markers to go on map and gives them all the information they need applied.
 //Information like a wikipedia api call info window, marker image, size, animation, and clickable actions
 function setMarkers(map, landmarks) {
-	//function to access wikipedia api to return article about restaurant signature dish
+	//function to access wikipedia api to return article about landmark
 	function getWikiDish(restName){
 	    // load wikipedia data
-	    var dishName;
-	    //I use this switch statement to determine wikipedia search parameters per restaurant name
+	    var landmarkName;
+	    //I use this switch statement to determine wikipedia search parameters per landmark name
 	    switch (restName){
-	    	case "Pho Dai Loi":
-	    		dishName = "pho";
+	    	case "High Museum of Art":
+	    		landmarkName = "High Museum of Art";
 	    		break;
-	    	case "Taqueria Del Sol":
-	    		dishName = "taco";
+	    	case "World of Coca Cola":
+	    		landmarkName = "Cola";
 	    		break;
-	    	case "TWO Urban Licks":
-	    		dishName = "rotisserie";
+	    	case "Centennial Olympic Park":
+	    		landmarkName = "Olympics";
 	    		break;
-	    	case "King of Pops":
-	    		dishName = "popsicles";
+	    	case "Zoo Atlanta":
+	    		landmarkName = "Zoo";
 	    		break;
-	    	case "The Greater Good BBQ":
-	    		dishName = "bbq";
+	    	case "Stone Mountain":
+	    		landmarkName = "Mountain";
 	    		break;
 	    	default:
-	    		dishName = "food";
+	    		landmarkName = "landmark";
 	    }
 
-	    var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + dishName + '&format=json&callback=wikiCallback';
+	    var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + landmarkName + '&format=json&callback=wikiCallback';
 
-	    //the following commented out lines represent the old ajax fallback techniques, i wanted to keep for reference though
+	    //the following commented out lines represent the old ajax fallback techniques, I wanted to keep for reference though
 
 	    //timeout variable ensures if wikipedia request times out an error is handled
 	    // var wikiRequestTimeout = setTimeout(function(){
@@ -121,7 +121,7 @@ function setMarkers(map, landmarks) {
 	    //         var articleList = response[1];
      //            var articleStr = articleList[0];
      //            var url = 'http://en.wikipedia.org/wiki/' + articleStr;
-     //            $('#wikipedia-container').append('<div id="' + dishName + '"><p style="font-weight: bold">' + restName + ' Signature Dish!</p><p style="margin: 5px; text-align: center; font-weight: bold"><a style="color: blue" href="' + url + '">' + articleStr + '</a></p><p style="font-weight: bold">Check it out on Wikipedia :)</p></div>');
+     //            $('#wikipedia-container').append('<div id="' + landmarkName + '"><p style="font-weight: bold">' + restName</p><p style="margin: 5px; text-align: center; font-weight: bold"><a style="color: blue" href="' + url + '">' + articleStr + '</a></p><p style="font-weight: bold">Check it out on Wikipedia :)</p></div>');
 	    //         clearTimeout(wikiRequestTimeout);
 	    //     }
 	    // });
@@ -134,9 +134,9 @@ function setMarkers(map, landmarks) {
             var articleList = data[1];
             var articleStr = articleList[0];
             var url = 'http://en.wikipedia.org/wiki/' + articleStr;
-            $('#wikipedia-container').append('<div id="' + dishName + '"><p style="font-weight: bold">' + restName + ' Signature Dish!</p><p style="margin: 5px; text-align: center; font-weight: bold"><a style="color: blue" href="' + url + '">' + articleStr + '</a></p><p style="font-weight: bold">Check it out on Wikipedia :)</p></div>');
+            $('#wikipedia-container').append('<div id="' + landmarkName + '"><p style="font-weight: bold">' + restName + '!</p><p style="margin: 5px; text-align: center; font-weight: bold"><a style="color: blue" href="' + url + '">' + articleStr + '</a></p><p style="font-weight: bold">Check it out on Wikipedia :)</p></div>');
 	    }).fail(function(){
-	    	$('#wikipedia-container').append('<div id="' + dishName + '">Apologies the wiki request timed out</div>');
+	    	$('#wikipedia-container').append('<div id="' + landmarkName + '">Apologies the wiki request timed out</div>');
 	    });
 	}
 
@@ -177,42 +177,42 @@ function setMarkers(map, landmarks) {
 	}
 
 	for (var i = 0; i < landmarks.length; i++) {
-		var foodplace = landmarks[i];
-		getWikiDish(foodplace.name);
-		//console.log(foodplace.name);
-		//foodplace.status represents the true/false attribute after a search. so only restaurants that are part of search get a marker
-		if (foodplace.status) {
+		var landmarkplace = landmarks[i];
+		getWikiDish(landmarkplace.name);
+		//console.log(landmarkplace.name);
+		//landmarkplace.status represents the true/false attribute after a search. so only restaurants that are part of search get a marker
+		if (landmarkplace.status) {
 		    var marker = new google.maps.Marker({
-		      position: {lat: foodplace.lat, lng: foodplace.lon},
+		      position: {lat: landmarkplace.lat, lng: landmarkplace.lon},
 		      map: map,
 		      icon: image,
 		      shape: shape,
-		      title: foodplace.name,
+		      title: landmarkplace.name,
 		      animation: google.maps.Animation.DROP,
-		      zIndex: foodplace.order
+		      zIndex: landmarkplace.order
 		    });
 
 		    //ensure marker has click attribute for info window
 		    google.maps.event.addListener(marker, 'click', function(){
 		    	var correctMarkerId;
 		    	switch (this.title){
-			    	case "Pho Dai Loi":
-			    		correctMarkerId = "pho";
+			    	case "High Museum of Art":
+			    		correctMarkerId = "High Museum of Art";
 			    		break;
-			    	case "Taqueria Del Sol":
-			    		correctMarkerId = "taco";
+			    	case "World of Coca Cola":
+			    		correctMarkerId = "World of Coca Cola";
 			    		break;
-			    	case "TWO Urban Licks":
-			    		correctMarkerId = "rotisserie";
+			    	case "Centennial Olympic Park":
+			    		correctMarkerId = "Centennial Olympic Park";
 			    		break;
-			    	case "King of Pops":
-			    		correctMarkerId = "popsicles";
+			    	case "Zoo Atlanta":
+			    		correctMarkerId = "Zoo Atlanta";
 			    		break;
-			    	case "The Greater Good BBQ":
-			    		correctMarkerId = "bbq";
+			    	case "Stone Mountain":
+			    		correctMarkerId = "Stone Mountain";
 			    		break;
 			    	default:
-			    		correctMarkerId = "food";
+			    		correctMarkerId = "landmark";
 			    }
 		    	var markertext = $('#'+ correctMarkerId + '').html();
 		    	//console.log(this.title);
@@ -248,13 +248,13 @@ function setMarkers(map, landmarks) {
 	map.fitBounds(bounds);
 }
 
-//foodplacemodel is the knockout observable model object that will dynamically drive my sidebar and markers
-var foodplaceModel = function(data){
+//landmarkplacemodel is the knockout observable model object that will dynamically drive my sidebar and markers
+var landmarkplaceModel = function(data){
 	this.name = ko.observable(data.name);
 	this.lat = ko.observable(data.lat);
 	this.lon = ko.observable(data.lon);
 	this.order = ko.observable(data.order);
-	this.cuisine = ko.observable(data.cuisine);
+	this.highlight = ko.observable(data.highlight);
 };
 
 //Viewmodel/controller where data gets accessed from DOM and search
@@ -262,25 +262,25 @@ var ViewModel = function () {
 	//putting this into self where self is viewmodel avoids confusion
 	var self = this;
 
-	self.foodList = ko.observableArray([]);
-	landmarks.forEach(function(foodplace){
-		self.foodList.push(new foodplaceModel(foodplace));
+	self.landmarkList = ko.observableArray([]);
+	landmarks.forEach(function(landmarkplace){
+		self.landmarkList.push(new landmarkplaceModel(landmarkplace));
 	});
 
-	//the listClick function is how I get from the sidebar dom elements that list restaurants to the markers that represent them
-	self.listClick = function(clickedFood) {
-		//console.log(typeof(clickedFood.name));
-		//console.log(typeof(clickedFood.name()));
-		var clickedFoodValue;
+	//the listClick function is how I get from the sidebar dom elements that list landmarks to the markers that represent them
+	self.listClick = function(clickedLandmark) {
+		//console.log(typeof(clickedLandmark.name));
+		//console.log(typeof(clickedLandmark.name()));
+		var clickedLandmarkValue;
 
 		//this was actually a really funny workaround. depending on the searched nature of the sidebar restaurants, the dom element could either
-		//represent the foodplacemodel observable object or just the foodplace object. one can be accessed by function and the other can't. so
+		//represent the landmarkplacemodel observable object or just the landmarkplace object. one can be accessed by function and the other can't. so
 		//this error catcher addresses both scenarios
 		try {
-			clickedFoodValue = clickedFood.name();
+			clickedLandmarkValue = clickedLandmark.name();
 		}
 		catch(err) {
-			clickedFoodValue = clickedFood.name;
+			clickedLandmarkValue = clickedLandmark.name;
 		}
 
 		//stopping that pesky animation. has to be outside for loop
@@ -288,10 +288,10 @@ var ViewModel = function () {
 			setTimeout(function(){marker.setAnimation(null);}, 1400);
 		}
 
-		//console.log(clickedFood.name());
+		//console.log(clickedlandmark.name());
 		for (var matchedmarker in markers) {
 			//console.log(markers[matchedmarker].title);
-			if (markers[matchedmarker].title == clickedFoodValue){
+			if (markers[matchedmarker].title == clickedlandmarkValue){
 				if (markers[matchedmarker].getAnimation() !== null) {
 		    		markers[matchedmarker].setAnimation(null);
 		    	} else {
@@ -299,23 +299,23 @@ var ViewModel = function () {
 		    		stopAnimation(markers[matchedmarker]);
 		    	}
 		    	switch (markers[matchedmarker].title){
-			    	case "Pho Dai Loi":
-			    		correctMarkerId = "pho";
+			    	case "High Museum of Art":
+			    		correctMarkerId = "High Museum of Art";
 			    		break;
-			    	case "Taqueria Del Sol":
-			    		correctMarkerId = "taco";
+			    	case "World of Coca Cola":
+			    		correctMarkerId = "World of Coca Cola";
 			    		break;
-			    	case "TWO Urban Licks":
-			    		correctMarkerId = "rotisserie";
+			    	case "Centennial Olympic Park":
+			    		correctMarkerId = "Centennial Olympic Park";
 			    		break;
-			    	case "King of Pops":
-			    		correctMarkerId = "popsicles";
+			    	case "Zoo Atlanta":
+			    		correctMarkerId = "Zoo Atlanta";
 			    		break;
-			    	case "The Greater Good BBQ":
-			    		correctMarkerId = "bbq";
+			    	case "Stone Mountain":
+			    		correctMarkerId = "Stone Mountain";
 			    		break;
 			    	default:
-			    		correctMarkerId = "food";
+			    		correctMarkerId = "landmark";
 			    }
 		    	var markertext = $('#'+ correctMarkerId + '').html();
 		    	infowindow.setContent(markertext);
@@ -328,17 +328,17 @@ var ViewModel = function () {
 
 	//viewmodel search function to take action based on value inside search bar!
 	self.search = function(value){
-		self.foodList.removeAll();
+		self.landmarkList.removeAll();
 		for (var place in landmarks){
 			landmarks[place].status = false;
 		}
 		for (place in landmarks){
 			if (landmarks[place].name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
-				self.foodList.push(landmarks[place]);
+				self.landmarkList.push(landmarks[place]);
 				landmarks[place].status = true;
 			}
-			else if (landmarks[place].cuisine.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
-				self.foodList.push(landmarks[place]);
+			else if (landmarks[place].highlight.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+				self.landmarkList.push(landmarks[place]);
 				landmarks[place].status = true;
 			}
 		}

@@ -22,9 +22,9 @@
     </header>
     <div class="sidebar">
       <input placeholder="Search Landmarks!" type="search" data-bind="value: input, valueUpdate: 'keyup'" autocomplete="off">
-      <ul data-bind="foreach: foodList">
+      <ul data-bind="foreach: landmarkList">
         <li>
-          <strong data-bind="text: name, click: $parent.listClick"></strong> (<span data-bind="text: cuisine"></span>)
+          <strong data-bind="text: name, click: $parent.listClick"></strong> (<span data-bind="text: highlight"></span>)
         </li>
       </ul>
       <h3>Click any landmark for more information via Wikipedia API</h3>
@@ -33,7 +33,7 @@
     <div id="map-error"></div>
     <div id="wikipedia-container" style="display: none">
     </div>
-    <script src="js/lib/knockout-3.2.0.js"></script>
+    <script src="js/lib/knockout-3.4.0.js"></script>
     <script src="js/app.js"></script>
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOUWwT51V4h8iglWb6DoUxCeTiM99NqaY&callback=initMap">
