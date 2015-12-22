@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Kris' Favorite Atlanta Landmarks</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Cardo:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
+    <script src="js/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1 class="header__title">Kris' Favorite Atlanta Landmarks</h1>
+        <a id="menu">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/>
+          </svg>
+        </a>
+      </div>
+    </header>
+    <div class="sidebar">
+      <input placeholder="Search Landmarks!" type="search" data-bind="value: input, valueUpdate: 'keyup'" autocomplete="off">
+      <ul data-bind="foreach: foodList">
+        <li>
+          <strong data-bind="text: name, click: $parent.listClick"></strong> (<span data-bind="text: cuisine"></span>)
+        </li>
+      </ul>
+      <h3>Click any landmark for more information via Wikipedia API</h3>
+    </div>
+    <div id="map"></div>
+    <div id="map-error"></div>
+    <div id="wikipedia-container" style="display: none">
+    </div>
+    <script src="js/lib/knockout-3.2.0.js"></script>
+    <script src="js/app.js"></script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOUWwT51V4h8iglWb6DoUxCeTiM99NqaY&callback=initMap">
+    </script>
+    <script>
+      /*
+       * listeners to open the drawer when the menu icon is clicked
+       */
+      var menu = document.querySelector('#menu');
+      var main = document.querySelector('#map');
+      var drawer = document.querySelector('.sidebar');
+      var listbullets = document.querySelector('.listbullets');
+      menu.addEventListener('click', function(e) {
+        drawer.classList.toggle('open');
+        e.stopPropagation();
+      });
+      main.addEventListener('click', function() {
+        drawer.classList.remove('open');
+      });
+    </script>
+  </body>
+</html>
