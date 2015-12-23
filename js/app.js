@@ -146,7 +146,7 @@ function setMarkers(map, landmarks) {
 	// Origins, anchor positions and coordinates of the marker increase in the X
 	// direction to the right and in the Y direction down.
 	var image = {
-	url: 'img/face.png',
+	MAPS_ICON_DEFAULT: 'http://maps.google.com/mapfiles/ms/micons/red-dot.png',
 	// This marker is 20 pixels wide by 32 pixels high.
 	size: new google.maps.Size(25, 35),
 	// The origin for this image is (0, 0).
