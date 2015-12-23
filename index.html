@@ -21,7 +21,7 @@
       </div>
     </header>
     <div class="sidebar">
-      <input placeholder="Search Landmarks!" type="search" data-bind="value: input, valueUpdate: 'keyup'" autocomplete="off">
+      <input placeholder="type hear to filter" type="search" data-bind="value: input, valueUpdate: 'keyup'" autocomplete="off">
       <ul data-bind="foreach: landmarkList">
         <li>
           <strong data-bind="text: name, click: $parent.listClick"></strong> (<span data-bind="text: highlight"></span>)
