@@ -134,7 +134,7 @@ function setMarkers(map, landmarks) {
             var articleList = data[1];
             var articleStr = articleList[0];
             var url = 'http://en.wikipedia.org/wiki/' + articleStr;
-            $('#wikipedia-container').append('<div id="' + landmarkName + '"><p style="font-weight: bold">' + restName + '!</p><p style="margin: 5px; text-align: center; font-weight: bold"><a style="color: blue" href="' + url + '">' + articleStr + '</a></p><p style="font-weight: bold">Check it out on Wikipedia :)</p></div>');
+            $('#wikipedia-container').append('<div id="' + landmarkName + '"><p style="font-weight: bold">' + restName + ' </p><p style="margin: 5px; text-align: center; font-weight: bold"><a style="color: blue" href="' + url + '">' + articleStr + '</a></p><p style="font-weight: bold">Check it out on Wikipedia :)</p></div>');
 	    }).fail(function(){
 	    	$('#wikipedia-container').append('<div id="' + landmarkName + '">Apologies the wiki request timed out</div>');
 	    });
@@ -291,7 +291,7 @@ var ViewModel = function () {
 		//console.log(clickedlandmark.name());
 		for (var matchedmarker in markers) {
 			//console.log(markers[matchedmarker].title);
-			if (markers[matchedmarker].title == clickedlandmarkValue){
+			if (markers[matchedmarker].title == clickedLandmarkValue){
 				if (markers[matchedmarker].getAnimation() !== null) {
 		    		markers[matchedmarker].setAnimation(null);
 		    	} else {
